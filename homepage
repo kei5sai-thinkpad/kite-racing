@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>kite racing</title>
+
+<style>
+body{
+  margin: 0;
+  background: linear-gradient(135deg, #fbfdff, #2a5298);
+}
+
+/* ===== 文字アニメーション ===== */
+.fade-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.5s;
+}
+
+.fade-text.show span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-text {
+  text-align: center;
+  padding-top: 20px;
+}
+
+/* ===== ボタン ===== */
+#toggleBtn{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+
+  background: #2a5298;
+  color: white;
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== サイドバー ===== */
+.right-box{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1d24, #2a2f3a);
+  padding-top: 80px;
+  transition: transform 0.5s ease;
+}
+
+.right-box.closed{
+  transform: translateX(100%);
+}
+</style>
+
+</head>
+<body>
+
+<h1 class="fade-text">kite racingへようこそ</h1>
+
+<button id="toggleBtn">メニュー</button>
+
+<div class="right-box closed" id="sidebar">
+  メニュー内容
+  <button onclick="location.href='page2.html'">ページ2</button>
+</div>
+
+<a href="kure.html">©kei5sai 2026</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ===== 文字アニメーション =====
+  const text = document.querySelector('.fade-text');
+
+  if (text) {
+    const chars = text.textContent.split('');
+    text.textContent = '';
+
+    chars.forEach((char, i) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.style.transitionDelay = i * 0.05 + 's';
+      text.appendChild(span);
+    });
+
+    setTimeout(() => {
+      text.classList.add('show');
+    }, 100);
+  }
+
+  // ===== メニュー =====
+  const btn = document.getElementById("toggleBtn");
+  const sidebar = document.getElementById("sidebar");
+
+  if (btn && sidebar) {
+    btn.addEventListener("click", () => {
+      sidebar.classList.toggle("closed");
+    });
+  }
+
+});
+</script>
+
+</body>
+</html>
