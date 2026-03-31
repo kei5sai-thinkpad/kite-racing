@@ -35,6 +35,25 @@ body{
 .back:hover{
   background: #357abd;
 }
+
+<style>
+body{
+  margin:0;
+  font-family: sans-serif;
+  background: linear-gradient(135deg, #0f1115, #1c1f26);
+  color: white;
+  text-align: center;
+
+  /* 👇これ追加 */
+  opacity: 0;
+  animation: fade 0.8s forwards;
+}
+
+@keyframes fade{
+  to{ opacity: 1; }
+}
+</style>
+  
 </style>
 
 </head>
