@@ -5,84 +5,39 @@
 <title>kite racing</title>
 
 <style>
-
+/* ===== 全体 ===== */
 body{
-  background: url("bg.jpg") center/cover no-repeat;
-  animation: zoom 20s infinite alternate;
+  margin:0;
+  font-family: sans-serif;
+  color: white;
+  text-align: center;
+  opacity: 0;
+
+  /* 背景画像＋暗く */
+  background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* アニメーション */
+  animation: fade 0.8s forwards, zoom 20s infinite alternate;
 }
 
+/* フェードイン */
+@keyframes fade{
+  to{ opacity: 1; }
+}
+
+/* ズーム */
 @keyframes zoom{
   from{ background-size: 100%; }
   to{ background-size: 110%; }
 }
-  
-  body{
-  margin: 0;
-  background: linear-gradient(135deg, #fbfdff, #2a5298);
-}
 
-.card:active{
-  transform: scale(0.95);
-}
-  
-/* ===== 文字アニメーション ===== */
-.fade-text span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.5s;
-}
-
-.fade-text.show span {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-text {
-  text-align: center;
-  padding-top: 20px;
-}
-
-/* ===== ボタン ===== */
-#toggleBtn{
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-
-  background: #2a5298;
-  color: white;
-  border-radius: 30px;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
-
-/* ===== サイドバー ===== */
-.right-box{
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100vh;
-  background: linear-gradient(135deg, #1a1d24, #2a2f3a);
-  padding-top: 80px;
-  transition: transform 0.5s ease;
-}
-
-.right-box.closed{
-  transform: translateX(100%);
-}
-
-body{
-  margin:0;
-  font-family: sans-serif;
-  background: linear-gradient(135deg, #0f1115, #1c1f26);
-  color: white;
-  text-align: center;
-}
-
-/* タイトル */
+/* ===== タイトル ===== */
 .hero{
   font-size: 60px;
   margin-top: 150px;
@@ -99,7 +54,7 @@ body{
   animation-delay: 0.3s;
 }
 
-/* カード */
+/* ===== カード ===== */
 .cards{
   margin-top: 100px;
   display: flex;
@@ -110,24 +65,37 @@ body{
 .card{
   width: 200px;
   height: 120px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.08);
   border-radius: 20px;
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   opacity: 0;
   transform: translateY(50px);
   animation: fadeUp 1s forwards;
+  transition: 0.3s;
 }
 
-/* カードに遅延つける */
+/* 遅延 */
 .card:nth-child(1){ animation-delay: 0.6s; }
 .card:nth-child(2){ animation-delay: 0.8s; }
 .card:nth-child(3){ animation-delay: 1s; }
 
-/* アニメーション */
+/* ホバー */
+.card:hover{
+  transform: scale(1.1) translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* クリック */
+.card:active{
+  transform: scale(0.95);
+}
+
+/* ===== アニメーション ===== */
 @keyframes fadeUp{
   to{
     opacity: 1;
@@ -135,37 +103,43 @@ body{
   }
 }
 
-.card{
-  transition: 0.3s;
-}
+/* ===== メニュー ===== */
+#toggleBtn{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
 
-/* ホバー時 */
-.card:hover{
-  transform: scale(1.1) translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-
-  
-  
-<style>
-body{
-  margin:0;
-  font-family: sans-serif;
-  background: linear-gradient(135deg, #0f1115, #1c1f26);
+  background: #2a5298;
   color: white;
-  text-align: center;
-
-  /* 👇これ追加 */
-  opacity: 0;
-  animation: fade 0.8s forwards;
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }
 
-@keyframes fade{
-  to{ opacity: 1; }
+/* サイドバー */
+.right-box{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1d24, #2a2f3a);
+  padding-top: 80px;
+  transition: transform 0.5s ease;
 }
-</style>
-  
+
+.right-box.closed{
+  transform: translateX(100%);
+}
+
+/* フッター */
+a{
+  display: block;
+  margin-top: 100px;
+  color: #ccc;
+}
 </style>
 
 </head>
@@ -180,7 +154,7 @@ body{
   <div class="card" onclick="location.href='atb.html'">About the developer</div>
   <div class="card" onclick="location.href='ds.html'">Development status</div>
 </div>
-  
+
 <button id="toggleBtn">メニュー</button>
 
 <div class="right-box closed" id="sidebar">
@@ -191,37 +165,12 @@ body{
 <a href="kure.html">©kei5sai 2025-2026</a>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+// メニュー
+const btn = document.getElementById("toggleBtn");
+const sidebar = document.getElementById("sidebar");
 
-  // ===== 文字アニメーション =====
-  const text = document.querySelector('.fade-text');
-
-  if (text) {
-    const chars = text.textContent.split('');
-    text.textContent = '';
-
-    chars.forEach((char, i) => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      span.style.transitionDelay = i * 0.05 + 's';
-      text.appendChild(span);
-    });
-
-    setTimeout(() => {
-      text.classList.add('show');
-    }, 100);
-  }
-
-  // ===== メニュー =====
-  const btn = document.getElementById("toggleBtn");
-  const sidebar = document.getElementById("sidebar");
-
-  if (btn && sidebar) {
-    btn.addEventListener("click", () => {
-      sidebar.classList.toggle("closed");
-    });
-  }
-
+btn.addEventListener("click", () => {
+  sidebar.classList.toggle("closed");
 });
 </script>
 
