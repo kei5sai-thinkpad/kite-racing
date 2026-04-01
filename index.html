@@ -4,10 +4,54 @@
 <meta charset="UTF-8">
 <title>kite racing</title>
 
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
 <style>
   
 /* ===== 全体 ===== */
+
+/* ===== スマホ対応 ===== */
+@media (max-width: 600px){
+
+  /* タイトル小さく */
+  .hero{
+    font-size: 32px;
+    margin-top: 80px;
+  }
+
+  .sub{
+    font-size: 14px;
+  }
+
+  /* カード縦並び */
+  .cards{
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* カードサイズ調整 */
+  .card{
+    width: 90%;
+    height: 100px;
+    font-size: 16px;
+  }
+
+  /* メニューボタン */
+  #toggleBtn{
+    top: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  /* サイドバー幅 */
+  .right-box{
+    width: 80%;
+  }
+
+}
+  
 body{
   margin:0;
   font-family: sans-serif;
